@@ -7,8 +7,8 @@
     <ProjectGuid>{D680B52A-8FDA-40A8-AA2E-09E1F682B3EB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DA.Common</RootNamespace>
-    <AssemblyName>DA.Common</AssemblyName>
+    <RootNamespace>DataAccessFoundation</RootNamespace>
+    <AssemblyName>DataAccessFoundation</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
