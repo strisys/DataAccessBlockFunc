@@ -14,7 +14,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using NLog;
 
-namespace DataAccessFoundation {
+namespace DataAccessBlockFunc {
     /// <summary>
     /// Service for issuing data access command using Microsoft Data Access Blocks
     /// </summary>

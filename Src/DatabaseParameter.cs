@@ -5,7 +5,7 @@ using System;
 using System.Data;
 using System.Diagnostics;
 
-namespace DataAccessFoundation {	
+namespace DataAccessBlockFunc {	
 	/// <summary>
 	/// Encapsulates a set of values used to set parameters.
 	/// </summary>

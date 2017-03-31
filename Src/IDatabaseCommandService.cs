@@ -8,7 +8,10 @@ using System.Data.Common;
 using System.Transactions;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 
-namespace DataAccessFoundation {
+namespace DataAccessBlockFunc {
+    /// <summary>
+    /// Service for issuing data access command using Microsoft Data Access Blocks
+    /// </summary>
     public interface IDatabaseCommandService {
         /// <summary>
         /// Gets the name of the environment.
@@ -61,7 +64,7 @@ namespace DataAccessFoundation {
         /// <returns><see cref="TransactionScope"/></returns>
         /// <code>
         ///     using(TransactionScope scope = GetTransactionScope()) {
-        ///        // execution commands
+        ///        // execute commands
         ///     }
         /// </code>
         TransactionScope GetTransactionScope(TransactionScopeOption option = TransactionScopeOption.Required);

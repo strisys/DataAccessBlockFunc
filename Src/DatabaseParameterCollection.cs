@@ -7,7 +7,7 @@ using System.Text;
 using System.Diagnostics;
 using System.Collections.Generic;
 
-namespace DataAccessFoundation {
+namespace DataAccessBlockFunc {
 	/// <summary>
 	/// Collection responsbile for managing <see cref="DatabaseParameter"/> instances.
 	/// </summary>

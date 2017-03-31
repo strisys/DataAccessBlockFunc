@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DA.Common")]
-[assembly: AssemblyDescription("Basic utility libary that using the Microsoft Data Access Block")]
+[assembly: AssemblyTitle("DataAccessBlockFunc")]
+[assembly: AssemblyDescription("Simple wrapper for Microsoft Patterns & Practices Data Access Blocks using a functional programming model.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Strisys Corporation")]
-[assembly: AssemblyProduct("DA.Common")]
+[assembly: AssemblyProduct("DataAccessBlockFunc")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("en-US")]
