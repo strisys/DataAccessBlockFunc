@@ -6,6 +6,8 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Transactions;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Data;
@@ -16,6 +18,7 @@ namespace DataAccessFoundation {
     /// <summary>
     /// Service for issuing data access command using Microsoft Data Access Blocks
     /// </summary>
+    [DebuggerStepThrough]
     public class DatabaseCommandService : IDatabaseCommandService {
         #region Fields
 
@@ -53,6 +56,20 @@ namespace DataAccessFoundation {
         /// </summary>
         public virtual ILogger Logger {
             get { return _logger; }
+        }
+
+        /// <summary>
+        /// Gets the <see cref="TransactionScope"/>.
+        /// </summary>
+        /// <param name="option">The option.</param>
+        /// <returns></returns>
+        /// <code>
+        ///     using(TransactionScope scope = GetTransactionScope()) {
+        ///        // execution commands
+        ///     }
+        /// </code>
+        public virtual TransactionScope GetTransactionScope(TransactionScopeOption option = TransactionScopeOption.RequiresNew) {
+            return (new TransactionScope(option));
         }
 
         /// <summary>

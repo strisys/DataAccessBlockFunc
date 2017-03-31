@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Transactions;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace DataAccessFoundation {
@@ -18,7 +19,7 @@ namespace DataAccessFoundation {
         String EnvironmentName { get; }
 
         /// <summary>
-        /// Gets the name of the user.
+        /// Gets the name of the user executing the commands.
         /// </summary>
         /// <value>
         /// The name of the user.
@@ -26,7 +27,7 @@ namespace DataAccessFoundation {
         String UserName { get; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether suppress logging.
+        /// Gets or sets a value indicating whether to suppress logging.
         /// </summary>
         /// <value>
         ///   <c>true</c> if suppress logging; otherwise, <c>false</c>.
@@ -54,10 +55,22 @@ namespace DataAccessFoundation {
         Database GetDataBase();
 
         /// <summary>
+        /// Gets the <see cref="TransactionScope"/>.
+        /// </summary>
+        /// <param name="option">The <see cref="TransactionScopeOption"/>.</param>
+        /// <returns><see cref="TransactionScope"/></returns>
+        /// <code>
+        ///     using(TransactionScope scope = GetTransactionScope()) {
+        ///        // execution commands
+        ///     }
+        /// </code>
+        TransactionScope GetTransactionScope(TransactionScopeOption option = TransactionScopeOption.Required);
+
+        /// <summary>
         /// Creates the database.
         /// </summary>
         /// <param name="connectionString">The connection string.</param>
-        /// <returns></returns>
+        /// <returns><see cref="Database"/></returns>
         Database CreateDatabase(String connectionString);
 
         /// <summary>
@@ -65,7 +78,7 @@ namespace DataAccessFoundation {
         /// </summary>
         /// <param name="storedProcedureName">Name of the stored procedure.</param>
         /// <param name="parametersFunc">The callback used to specify parameters.</param>
-        /// <returns></returns>
+        /// <returns>Return code</returns>
         Int32 ExecuteSpNonQuery(String storedProcedureName, Action<DatabaseParameterCollection> parametersFunc = null);
 
         /// <summary>
@@ -73,7 +86,7 @@ namespace DataAccessFoundation {
         /// </summary>
         /// <param name="storedProcedureName">Name of the stored procedure.</param>
         /// <param name="parametersFunc">The callback used to specify parameters.</param>
-        /// <returns></returns>
+        /// <returns>Scalar value</returns>
         Object ExecuteSpScalar(String storedProcedureName, Action<DatabaseParameterCollection> parametersFunc = null);
 
         /// <summary>
@@ -81,9 +94,7 @@ namespace DataAccessFoundation {
         /// </summary>
         /// <param name="storedProcedureName">Name of the stored procedure.</param>
         /// <param name="parametersFunc">The callback used to specify parameters.</param>
-        /// <returns>
-        ///   <see cref="DataSet" />
-        /// </returns>
+        /// <returns><see cref="DataSet" /></returns>
         DataSet ExecuteSpDataSet(String storedProcedureName, Action<DatabaseParameterCollection> parametersFunc = null);
 
         /// <summary>
@@ -91,9 +102,7 @@ namespace DataAccessFoundation {
         /// </summary>
         /// <param name="storedProcedureName">Name of the stored procedure.</param>
         /// <param name="parametersFunc">The callback used to specify parameters.</param>
-        /// <returns>
-        ///   <see cref="DataTable" />
-        /// </returns>
+        /// <returns><see cref="DataTable" /></returns>
         /// <exception cref="System.InvalidOperationException"></exception>
         DataTable ExecuteSpDataTable(String storedProcedureName, Action<DatabaseParameterCollection> parametersFunc = null);
 
@@ -101,7 +110,7 @@ namespace DataAccessFoundation {
         /// Executes the SQL <see cref="DataSet"/>
         /// </summary>
         /// <param name="sql">The SQL.</param>
-        /// <returns></returns>
+        /// <returns><see cref="DataSet"/></returns>
         DataSet ExecuteSqlDataSet(String sql);
 
         /// <summary>
@@ -109,14 +118,14 @@ namespace DataAccessFoundation {
         /// </summary>
         /// <param name="sql">The SQL.</param>
         /// <param name="parametersFunc">The parameters function.</param>
-        /// <returns></returns>
+        /// <returns><see cref="DataSet"/></returns>
         DataSet ExecuteSqlDataSet(String sql, Action<DatabaseParameterCollection> parametersFunc);
 
         /// <summary>
         /// Executes the <b>SQL</b> and returns a <see cref="DataTable" />
         /// </summary>
         /// <param name="sql">The SQL to execute.</param>
-        /// <returns></returns>
+        /// <returns><see cref="DataTable"/></returns>
         DataTable ExecuteSqlDataTable(String sql);
 
         /// <summary>
@@ -124,7 +133,7 @@ namespace DataAccessFoundation {
         /// </summary>
         /// <param name="sql">The SQL to execute.</param>
         /// <param name="parametersFunc">The callback used to specify parameters.</param>
-        /// <returns></returns>
+        /// <returns><see cref="DataTable"/></returns>
         DataTable ExecuteSqlDataTable(String sql, Action<DatabaseParameterCollection> parametersFunc);
 
         /// <summary>
@@ -132,7 +141,7 @@ namespace DataAccessFoundation {
         /// </summary>
         /// <param name="sql">Sql to be run.</param>
         /// <param name="parametersFunc">The callback used to specify parameters.</param>
-        /// <returns></returns>
+        /// <returns>Scalar value</returns>
         Object ExecuteSqlScalar(String sql, Action<DatabaseParameterCollection> parametersFunc = null);
 
         /// <summary>
@@ -140,7 +149,7 @@ namespace DataAccessFoundation {
         /// </summary>
         /// <param name="sql">Sql to be run.</param>
         /// <param name="parametersFunc">The callback used to specify parameters.</param>
-        /// <returns>Number of rows affected</returns>
+        /// <returns>Return code</returns>
         Int32 ExecuteSqlNonQuery(String sql, Action<DatabaseParameterCollection> parametersFunc = null);
 
         /// <summary>
