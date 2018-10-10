@@ -10,7 +10,7 @@ Extend `DatabaseCommandService`, override abstract members, and then issue comma
 
     
 
-    	IDatabaseCommandService cs = new MyDatabaseCommandService();
+IDatabaseCommandService cs = new MyDatabaseCommandService();
 
 	DataTable table = cs.ExecuteSpDataTable("SpGetCustomer", (parameters) => {
 		parameters.Add("CustomerID", DbType.Int32, 1);
